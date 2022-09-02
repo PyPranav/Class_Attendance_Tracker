@@ -1,0 +1,40 @@
+{% load static %}
+<html>
+<head>
+    <title>
+        {% block title %}
+        Register
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'registerLogin.css' %}?{% now "U" %}"" />
+</head>
+<body>
+<div class="login-box">
+    {% block content %}
+    <h2>Register</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+      <div class="user-box">
+        {{form.username}}
+        <label>{{form.username.label}}</label>
+      </div>
+      <div class="user-box">
+        {{form.password1}}
+        <label>{{form.password1.label}}</label>
+      </div>
+      <div class="user-box">
+        {{form.password2}}
+        <label>{{form.password2.label}}</label>
+      </div>
+      {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+            <p style="color: RED;">{{error}}</p>
+        {% endfor %}
+      {% endfor %}
+      <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+      <input class='submit' type="submit" name="Create User" value="Submit">
+    </form>
+    {% endblock %}
+  </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'register.html' %}
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+<h2>Login</h2>
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="user-box">
+      <input type="text" name="username" required autofocus>
+      <label>Username</label>
+    </div>
+    
+    <div class="user-box">
+      <input type="password" name="password" required>
+      <label>Password</label>
+    </div>
+    {% for msg in messages %}
+    <p style="color: yellow;">{{msg}}</p>
+    {% endfor %}
+    <p>Don't have an account? <a href="{% url 'register' %}">Sign Up</a></p>
+    <input class='submit' type="submit" name="Create User" value="Submit">
+  </form>
+{% endblock %}
