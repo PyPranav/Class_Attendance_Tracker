@@ -22,7 +22,7 @@ class Student(models.Model):
     rollno = models.CharField(max_length=10)
     firstname = models.CharField(max_length=200)
     lastname = models.CharField(max_length=200)
-    netAttendance = models.IntegerField()
+    netAttendance = models.IntegerField(default=0)
     
     def __str__(self):
         return self.firstname+" "+self.lastname
