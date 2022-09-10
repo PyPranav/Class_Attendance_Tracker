@@ -19,7 +19,7 @@ Login
     {% for msg in messages %}
     <p style="color: yellow;">{{msg}}</p>
     {% endfor %}
-    <p>Don't have an account? <a href="{% url 'register' %}">Sign Up</a></p>
+    <p>Don't have an account? <a style="color: #015bb6;" href="{% url 'register' %}">Sign Up</a></p>
     <input class='submit' type="submit" name="Create User" value="Submit">
   </form>
 {% endblock %}
