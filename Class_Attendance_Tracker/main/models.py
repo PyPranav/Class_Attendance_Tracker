@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 
 class ClassName(models.Model):
@@ -35,4 +36,4 @@ class Attendance(models.Model):
     ispresent = models.BooleanField()
 
     def __str__(self):
-        return self.ispresent
+        return str(self.ispresent)

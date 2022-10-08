@@ -8,7 +8,10 @@
 {% endblock %}
 
 {% block content %}
-<p class="wlc__user">Welcome Username</p>
+<p class="wlc__user">Welcome {{request.user}}</p>
+{% for msg in messages %}
+    <p style="color: yellow;">{{msg}}</p>
+{% endfor %}
 
 <div class='opt-container'>
     <div class="opt-box">

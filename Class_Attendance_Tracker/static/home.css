@@ -34,7 +34,7 @@ body {
 .opt-box:after {
     content: "";
     display: block;
-    padding-bottom: 10%;
+    padding-bottom: 8%;
 }
 
 .opt-box:hover {
