@@ -1,0 +1,65 @@
+body {
+    background-color: #141e30;
+    font-family: 'Open Sans';
+}
+/* CSS FOR NAVBAR */
+.nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    z-index: 1;
+    height: 85px;
+    background-color: #243B55;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Nav LOGO css */
+.nav__logo{
+    position: fixed;
+    object-fit: contain;
+    width: 80px;
+    left: 20px;
+}
+
+/* Nav link css */
+.nav__text__container{
+    display: flex;
+    justify-content: space-around;
+    width: 330px;
+    position: fixed;
+    top:32px;
+    left:150px;
+}
+.nav__text{
+    font-size: 14px;
+    color: #ffffff;
+    transition: all 0.5s;
+    text-decoration: None;
+}
+.nav__text__container a:hover{
+    color:aquamarine;
+}
+.nav__text__container a:active{
+    color: #1ABC9C;
+}
+
+/* Nav logout css */
+.logout{
+    position: fixed;
+    object-fit: contain;
+    width: 80px;
+    top: 20px;
+    right: 0px;
+}
+.logout:hover {
+    filter: invert(50%);    
+}
+
+/* Nav username */
+.nav__user{
+    position: fixed;
+    right: 100px;
+    top:18px;
+}

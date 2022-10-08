@@ -1,3 +1,5 @@
+from cmath import log
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
@@ -42,4 +44,15 @@ def logoutPage(request):
 
 @login_required(login_url='login')
 def home(request):
-    return HttpResponse("<h1>heyya</h1>"+str(request.user))
+    context={}
+    return render(request, "home.html", context)
+
+@login_required(login_url="login")
+def createClass(request):
+    context={}
+    return render(request, 'createClass.html', context )
+
+@login_required(login_url="login")
+def takeAttendance(request):
+    context = {}
+    return render(request, 'takeAttendance.html', context )

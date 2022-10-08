@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'home.css' %}?{% now "U" %}" />
+{% endblock %}
+
+{% block content %}
+<p class="wlc__user">Welcome Username</p>
+
+<div class='opt-container'>
+    <div class="opt-box">
+        <p>Take attendance of a class</p>
+        <a class="box__button" href="{% url 'takeAttendance'%}">Go</a>
+    </div>
+
+    <div class="opt-box">
+        <p>Create a new class with new students</p>
+        <a class="box__button" href="{% url 'createClass' %}">Go</a>
+    </div>
+</div>
+<div class='opt-container'>
+    <div class="opt-box">
+        <p>Check old attendance</p>
+        <a class="box__button">Go</a>
+    </div>
+
+    <div class="opt-box">
+        <p>Latest Attendace: Class Div (Date:Time) </p>
+        <a class="box__button">Go</a>
+    </div>
+</div>
+{% endblock %}

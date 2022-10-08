@@ -1,0 +1,84 @@
+body {
+    background-color: #141e30;
+    font-family: 'Open Sans';
+}
+
+/* css to hide the nav text when size of screen is too small */
+@media (max-width: 750px) {
+    .hide{
+        visibility: hidden;
+    }
+    .nav__text__container{
+        left: 100px;
+    }
+}
+
+/* wlcm username */
+.wlc__user{
+    color: #ffffff;
+    margin: 2%;
+    font-size: 35px;
+    font-family: 'Damion';
+}
+
+
+/* CSS FOR THE 4 BOXES */
+.opt-box {
+    width: 40%;
+    background-color: #243B55;
+    border-radius: 30px;
+    box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.25);
+    transition: all 0.5s;
+}
+
+.opt-box:after {
+    content: "";
+    display: block;
+    padding-bottom: 10%;
+}
+
+.opt-box:hover {
+    box-shadow: none;
+}
+
+.opt-box p{
+    color: #ffffff;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 7%;
+    font-size: 17px;
+}
+
+.opt-container {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 2%;
+}
+
+/* Buttons */
+.box__button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 40px;
+    margin-left: 10%;
+    margin-top: 5%;
+    box-shadow: 0 15px 35px rgba(0,0,0,.6);
+    color: #fff;
+    background-color: #1ABC9C;
+    border:none;
+    border-radius:15px;
+    font-size: 16px;
+    overflow: hidden;
+    transition: all .5s;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+  
+.box__button:hover{
+    box-shadow: none;
+}
+  
+.box__button:active{
+    background-color: aquamarine;
+}
+  
