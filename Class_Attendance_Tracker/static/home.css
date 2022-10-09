@@ -2,7 +2,11 @@ body {
     background-color: #141e30;
     font-family: 'Open Sans';
 }
-
+.msg{
+    color: yellow;
+    font-size: x-small;
+    margin-left: 7%;
+}
 /* css to hide the nav text when size of screen is too small */
 @media (max-width: 750px) {
     .hide{

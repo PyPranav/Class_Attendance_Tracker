@@ -21,6 +21,7 @@ body {
     object-fit: contain;
     width: 80px;
     left: 20px;
+    top: 2px;
 }
 
 /* Nav link css */

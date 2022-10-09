@@ -10,7 +10,7 @@
 {% block content %}
 <p class="wlc__user">Welcome {{request.user}}</p>
 {% for msg in messages %}
-    <p style="color: yellow;">{{msg}}</p>
+    <p class='msg'>{{msg}}</p>
 {% endfor %}
 
 <div class='opt-container'>

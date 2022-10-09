@@ -3,7 +3,6 @@ body {
 }
 section{
   margin: 50px;
-  /* overflow-y: hidden; */
 }
 table{
   width:100%;
@@ -12,6 +11,10 @@ table{
 .hidden{
     position:absolute;
     visibility: hidden;
+}
+.largerCheckbox{
+  width: 20px;
+  height: 20px;
 }
 .tbl-header{
   background-color: #1abc9c;
@@ -154,4 +157,12 @@ td{
   
 .box__button:active{
     background-color: aquamarine;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1ABC9C; 
 }
