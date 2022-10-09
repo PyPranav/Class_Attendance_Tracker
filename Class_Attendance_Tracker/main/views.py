@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import *
+from datetime import datetime
 
 #_________________________________________Login Logout and Regitering User___________________________________________
 def loginPage(request):
@@ -82,4 +83,7 @@ def takeAttendance(request):
 
     context['subjects'] = request.user.subject_set.all()
     context['classnames'] = request.user.classname_set.all()
+    now = datetime.now()
+    context['curdate'], context['curtime'] = now.strftime("%Y-%m-%d"), now.strftime("%H:%M")
+
     return render(request, 'takeAttendance.html', context )
