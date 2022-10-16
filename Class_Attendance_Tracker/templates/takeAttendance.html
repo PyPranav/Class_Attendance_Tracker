@@ -5,6 +5,10 @@
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'takeAttendance.css' %}?{% now "U" %}" />
+<link rel="stylesheet" href="{% static 'dropDown.css' %}?{% now "U" %}" />
+<link rel="stylesheet" href="{% static 'boxButton.css' %}?{% now "U" %}" />
+<link rel="stylesheet" href="{% static 'table.css' %}?{% now "U" %}" />
+<link rel="stylesheet" href="{% static 'optBox.css' %}?{% now "U" %}" />
 {% endblock %}
 
 {% block content %}
@@ -49,6 +53,8 @@
 <form method="get">
     <div class="opt-box-container">
         <div class="opt-box">
+            <h1 class="title">Mark Attendance</h1>
+            <br>
             <span class="custom-dropdown">
                 <select name="className" required>
                     <option disabled selected hidden>Select Class Name</option>

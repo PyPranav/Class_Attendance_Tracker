@@ -1,3 +1,74 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %} New Class {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'dropDown.css' %}?{% now "U" %}" />
+<link rel="stylesheet" href="{% static 'boxButton.css' %}?{% now "U" %}" />
+<link rel="stylesheet" href="{% static 'optBox.css' %}?{% now "U" %}" />
+<link rel="stylesheet" href="{% static 'createClass.css' %}?{% now "U" %}" />
+<link rel="stylesheet" href="{% static 'table.css' %}?{% now "U" %}" />
+{% endblock %}
+{% block content %}
+{% if takeNewStudentDetails %}
+<section>
+    <form method="post">
+        {% csrf_token %}
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                <tr>
+                    <th>Roll No</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbl-content">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                    {% for i in rnge %}
+                        <tr>
+                            <td>{{className}}{{i}}</td>
+                            <td><input type="text" name="firstName_{{i}}" class="text__input" required></td>
+                            <td><input type="text" name="lastName_{{i}}" class="text__input" required></td>
+                        </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align: center; margin-top:3%">
+            <input class="box__button" type="submit" value="Submit"></button>
+        </div>
+    </form>
+</section>
+{% else %}
+<form method="get">
+    <div class="opt-box-container">
+        <div class="opt-box">
+            <h1 class="title">New Class</h1>
+            <br>
+            <span class="custom-dropdown">
+                <select name="year" required>
+                    <option disabled selected hidden>Select Year</option>
+                    <option>FY</option>  
+                    <option>SE</option>  
+                    <option>TE</option>  
+                    <option>FE</option>  
+                </select>
+            </span>
+            <br>
+            <br>
+            <input type="text" name="className" onkeydown="return /[a-z]/i.test(event.key)" class="text__input" placeholder="Enter Class Name" maxlength="2" required>
+            <input type="number" name="strength" class="text__input" placeholder="Enter Number of Students" maxlength="3" required>
+            {% for message in messages %}
+                <p style="color: RED;">{{message}}</p>
+            {% endfor %}
+            <br><br><br>
+            <input class="box__button" type="submit" value="Submit"></button>
+        </div>
+    </form>
+</div>
+{% endif %}
+{% endblock %}

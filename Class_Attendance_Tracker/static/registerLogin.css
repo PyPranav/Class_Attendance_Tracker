@@ -79,7 +79,7 @@ html {
     overflow: hidden;
     transition: .5s;
     margin-top: 40px;
-    letter-spacing: 2px;
+    /* letter-spacing: 2px; */
   }
   
   .submit:hover{

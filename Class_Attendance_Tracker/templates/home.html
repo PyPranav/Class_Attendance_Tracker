@@ -5,6 +5,7 @@
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'home.css' %}?{% now "U" %}" />
+<link rel="stylesheet" href="{% static 'boxButton.css' %}?{% now "U" %}" />
 {% endblock %}
 
 {% block content %}
@@ -31,7 +32,7 @@
     </div>
 
     <div class="opt-box">
-        <p>Latest Attendace: Class Div (Date:Time) </p>
+        <p>Latest Attendace: {{clsName}} ({{subj}}, {{dt}})</p>
         <a class="box__button">Go</a>
     </div>
 </div>

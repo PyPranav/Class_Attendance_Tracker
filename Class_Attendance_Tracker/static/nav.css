@@ -2,6 +2,9 @@ body {
     background-color: #141e30;
     font-family: 'Open Sans';
 }
+.title{
+    color: #fff;
+}
 /* CSS FOR NAVBAR */
 .nav{
     position: fixed;
@@ -19,9 +22,9 @@ body {
 .nav__logo{
     position: fixed;
     object-fit: contain;
-    width: 80px;
+    width: 70px;
     left: 20px;
-    top: 2px;
+    top: 10px;
 }
 
 /* Nav link css */
@@ -50,8 +53,9 @@ body {
 .logout{
     position: fixed;
     object-fit: contain;
+    height: 30px;
     width: 80px;
-    top: 20px;
+    top: 27px;
     right: 0px;
 }
 .logout:hover {
