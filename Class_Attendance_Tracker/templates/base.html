@@ -10,6 +10,7 @@
     {%endblock%}
     <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Damion' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -18,7 +19,7 @@
             <img class="nav__logo" src="https://lh3.googleusercontent.com/pw/AL9nZEX4fbXkan3L-dG1yA2znNV0vHiuQfJZJqoTW1bkcU88nbKnVuiNjCTVkIlkXxURdHjEiSY-yjvUzKeWaAEZcClE5Y4ME4JpOykVYA_S3CDtght15JaersN-xv2xqiRdwhDUbph0zmLUh0pzpWaXWbtu=w342-h340-no" alt="nav_logo">
         </a>
         <div class="nav__text__container">
-        <a class="nav__text" href="{% url 'home' %}">Home</a>
+        <a class="nav__text hide" href="{% url 'home' %}">Home</a>
         <a class="nav__text hide" href="{% url 'createClass' %}">New Class</a>
         <a class="nav__text hide" href="">Records</a>
         </div>
@@ -32,7 +33,7 @@
         <p class="nav__text nav__user">Hello {{request.user}}</p>
 
     </div>
-    <div style="height:70px;"></div>
+    <div style="height:70px"></div>
     {% block content %}
     {% endblock %}
 

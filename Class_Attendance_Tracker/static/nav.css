@@ -5,6 +5,15 @@ body {
 .title{
     color: #fff;
 }
+/* css to hide the nav text when size of screen is too small */
+@media (max-width: 700px) {
+    .hide{
+        visibility: hidden;
+    }
+    .nav__text__container{
+        left: 100px;
+    }
+}
 /* CSS FOR NAVBAR */
 .nav{
     position: fixed;

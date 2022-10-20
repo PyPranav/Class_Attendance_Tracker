@@ -45,10 +45,10 @@
 </section>
 {% else %}
 <form method="get">
-    <div class="opt-box-container">
+<div class="opt-box-container">
         <div class="opt-box">
+            
             <h1 class="title">New Class</h1>
-            <br>
             <span class="custom-dropdown">
                 <select name="year" required>
                     <option disabled selected hidden>Select Year</option>
@@ -58,17 +58,16 @@
                     <option>FE</option>  
                 </select>
             </span>
-            <br>
-            <br>
-            <input type="text" name="className" onkeydown="return /[a-z]/i.test(event.key)" class="text__input" placeholder="Enter Class Name" maxlength="2" required>
-            <input type="number" name="strength" class="text__input" placeholder="Enter Number of Students" maxlength="3" required>
+            <div class="input_container">
+                <input type="text" name="className" onkeydown="return /[a-z]/i.test(event.key)" class="text__input" placeholder="Enter Class Name" maxlength="2" required>
+                <input type="number" name="strength" class="text__input" placeholder="Enter Number of Students" maxlength="3" required>
+            </div>
             {% for message in messages %}
                 <p style="color: RED;">{{message}}</p>
             {% endfor %}
-            <br><br><br>
             <input class="box__button" type="submit" value="Submit"></button>
-        </div>
-    </form>
+    </div>
 </div>
+</form>
 {% endif %}
 {% endblock %}

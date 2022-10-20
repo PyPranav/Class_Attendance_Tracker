@@ -5,6 +5,7 @@
   }
   
   .custom-dropdown select {
+    width: 100%;
     appearance: none;
     background-color: #1abc9c;
     color: #fff;

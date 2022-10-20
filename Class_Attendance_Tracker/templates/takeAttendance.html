@@ -54,7 +54,8 @@
     <div class="opt-box-container">
         <div class="opt-box">
             <h1 class="title">Mark Attendance</h1>
-            <br>
+            <!-- <br> -->
+            <div class="dropdown_container">
             <span class="custom-dropdown">
                 <select name="className" required>
                     <option disabled selected hidden>Select Class Name</option>
@@ -72,9 +73,11 @@
                     {% endfor %}
                 </select>
             </span>
+        </div>
+            <!-- <br>
             <br>
-            <br>
-            <br>
+            <br> -->
+        <div class="datetime_container">
             <span class="datetime">
             <label for="curdate", style="color: #fff;">Date:</label>
             <input type="date" id="curdate" name="curdate" value="{{curdate}}" required>
@@ -83,7 +86,8 @@
             <label for="curtime"  style="color: #fff;">Time:</label>
             <input type="time" id="curtime" name="curtime" value="{{curtime}}" required> 
         </span>
-        <br><br><br>
+    </div>
+        <!-- <br><br><br> -->
         <input class="box__button" type="submit" value="Submit"></button>
         </div>
     </div>

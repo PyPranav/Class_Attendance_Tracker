@@ -7,16 +7,6 @@ body {
     font-size: 15px;
     margin-left: 7%;
 }
-/* css to hide the nav text when size of screen is too small */
-@media (max-width: 750px) {
-    .hide{
-        visibility: hidden;
-    }
-    .nav__text__container{
-        left: 100px;
-    }
-}
-
 /* wlcm username */
 .wlc__user{
     color: #ffffff;
@@ -62,5 +52,20 @@ body {
 .box__button {
     margin-left: 10%;
     margin-top: 5%;
+}
+
+@media (max-width: 700px) {
+    .opt-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding-bottom: 20px;
+        align-items: center;
+
+    }
+    .opt-box {
+        width: 80%;
+        
+    }
 }
   

@@ -12,3 +12,31 @@ body {
 .datetime{
   margin: 20px;
 }
+.dropdown_container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.datetime_container{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.box__button {
+  margin-top: 40px;
+}
+
+@media (max-width: 700px) {
+  .dropdown_container{
+    display: flex;
+    flex-direction: column;
+  }
+  .datetime_container{
+    display: flex;
+    flex-direction: column;
+    /* gap: 0px; */
+  }
+  .datetime{
+    margin: 0;
+  }
+}
