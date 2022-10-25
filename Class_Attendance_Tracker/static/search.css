@@ -1,3 +1,6 @@
+body{
+    color: #fff;
+}
 .text__input{
     background-color: #1abc9c;
     color: #fff;
@@ -7,13 +10,6 @@
     appearance: none;
     border-radius: 3px;
 } 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-input[type=number] {
-    -moz-appearance: textfield;
-}
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #fff;
     opacity: 1; /* Firefox */
@@ -25,13 +21,17 @@ color: #fff;
     margin-top: 40px;
     margin-bottom: 40px;
 }
-@media (max-width: 700px) {
-    .input_container{
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .text__input{
-        width: 80px;
-    }
+.title{
+    display: flex;
+    flex-direction: column;
+}
+.title a{
+    font-size: small;
+    align-self: flex-end;
+    margin-right: 10%;
+    text-decoration: none;
+    color: #0066cc;
+}
+.tbl-content{
+    height:40vh ;
 }

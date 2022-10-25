@@ -28,12 +28,13 @@
 <div class='opt-container'>
     <div class="opt-box">
         <p>Check old attendance</p>
-        <a class="box__button">Go</a>
+        <a class="box__button" href="{% url 'search' %}">Go</a>
     </div>
-
+    {% if clsName %}
     <div class="opt-box">
         <p>Latest Attendace: {{clsName}} ({{subj}}, {{dt}})</p>
-        <a class="box__button">Go</a>
+        <a class="box__button" href="{% url 'search' %}?{{get}}">Go</a>
     </div>
+    {% endif %}
 </div>
 {% endblock %}

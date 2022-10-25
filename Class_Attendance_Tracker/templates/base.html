@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="home.css">
     {%endblock%}
     <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Damion' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -21,7 +20,7 @@
         <div class="nav__text__container">
         <a class="nav__text hide" href="{% url 'home' %}">Home</a>
         <a class="nav__text hide" href="{% url 'createClass' %}">New Class</a>
-        <a class="nav__text hide" href="">Records</a>
+        <a class="nav__text hide" href="{% url 'search' %}">Records</a>
         </div>
         <a href="{% url 'logout' %}">
         <svg class='logout' width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">

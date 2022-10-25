@@ -5,6 +5,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import *
 from datetime import datetime
+import urllib
 
 #_________________________________________Login Logout and Registering User___________________________________________
 
@@ -46,10 +47,19 @@ def logoutPage(request):
 def home(request):
     context={}
     latest=request.user.attendance_set.last()
-    context["clsName"]=latest.student.classname.name
-    context['dt']=latest.datetime.strftime("%d-%m-%Y, %H:%M")
-    context['subj']=latest.subject
+    try:
+        context["clsName"]=latest.student.classname.name
+        context['dt']=latest.datetime.strftime("%d-%m-%Y, %H:%M")
+        context['subj']=latest.subject
+        #http://127.0.0.1:8000/search/?className=SE_A&curdate=2022-10-25&curtime=15%3A18
+        #http://127.0.0.1:8000/search/?className=SE_A&curdate=2022-10-26&curtime=15%3A18
+        context['get'] = urllib.parse.urlencode({'className':latest.student.classname.name, 'curdate':latest.datetime.strftime("%Y-%m-%d"),'curtime':latest.datetime.strftime("%H:%M")})
+    except:
+        context["clsName"]=""
+        context['dt']=""
+        context['subj']=""
     # print(clsName,dt,subj)
+    
     return render(request, "home.html", context)
 
 @login_required(login_url="login")
@@ -97,7 +107,7 @@ def takeAttendance(request):
         students = curClass.student_set.all()
         sub = request.user.subject_set.filter(subjectName=request.GET.get('subName'))[0]
         for student in students:
-            student.attendance_set.create(user = request.user, subject = sub, datetime=request.GET.get('curdate')+" "+request.GET.get('curtime')+":00", ispresent=student.rollno in request.POST)
+            student.attendance_set.create(user = request.user,classname=curClass,subject = sub, datetime=request.GET.get('curdate')+" "+request.GET.get('curtime')+":00", ispresent=student.rollno in request.POST)
             student.netAttendance += 1 if student.rollno in request.POST else 0
             student.save()
         messages.success(request, f"Attendance of class {curClass.name} was recorded")
@@ -122,3 +132,44 @@ def takeAttendance(request):
     context['curdate'], context['curtime'] = now.strftime("%Y-%m-%d"), now.strftime("%H:%M")
 
     return render(request, 'takeAttendance.html', context )
+
+def get_closest_to_dt(qs, dt, cl):
+    try:
+        p = qs.filter(datetime=dt,classname=cl)[0]
+        return p
+    except:
+        greater = qs.filter(datetime__gte=dt,classname=cl).order_by("datetime").first()
+        less = qs.filter(datetime__lte=dt,classname=cl).order_by("-datetime").first()
+
+        if greater and less:
+            return greater if abs(greater.datetime - dt) < abs(less.datetime - dt) else less
+        else:
+            return greater or less
+
+@login_required(login_url="login")
+def search(request):
+    context = {}
+    context["takeRecordDetails"]=True
+    # print(get_closest_to_dt(request.user.attendance_set,"2022-10-25 12:00:00").datetime)
+    if request.method=="GET" and request.GET and "className" in request.GET:
+        try:
+            context["takeRecordDetails"]=False
+            curClass = request.user.classname_set.filter(name=request.GET.get('className'))[0]
+            dateTime = get_closest_to_dt(request.user.attendance_set,f"{request.GET.get('curdate')} {request.GET.get('curtime')}",curClass)
+            # print(dateTime.datetime)
+            context['atts'] = request.user.attendance_set.filter(datetime=dateTime.datetime, classname=curClass)
+            context['cls'] = request.GET.get('className')
+            context['dt'] = dateTime.datetime
+            context['sub'] = dateTime.subject
+        except:
+            context["takeRecordDetails"]=True
+            messages.info(request,"Please enter a class with attendance!")
+
+    context['classnames'] = request.user.classname_set.all()
+    return render(request, 'search.html', context)
+
+
+@login_required(login_url="login")
+def adv_search(request):
+    context = {}
+    return render(request, 'search.html', context)
