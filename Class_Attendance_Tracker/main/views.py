@@ -39,7 +39,6 @@ def registerPage(request):
                 u.save()
             return redirect('login')
     context = {'form':form}
-    print(form.errors)
     return render(request, 'register.html', context)
 
 def logoutPage(request):
@@ -55,14 +54,11 @@ def home(request):
         context["clsName"]=latest.classname.name
         context['dt']=latest.datetime.strftime("%d-%m-%Y, %H:%M")
         context['subj']=latest.subject
-        #http://127.0.0.1:8000/search/?className=SE_A&curdate=2022-10-25&curtime=15%3A18
-        #http://127.0.0.1:8000/search/?className=SE_A&curdate=2022-10-26&curtime=15%3A18
         context['get'] = urllib.parse.urlencode({'className':latest.student.classname.name, 'curdate':latest.datetime.strftime("%Y-%m-%d"),'curtime':latest.datetime.strftime("%H:%M")})
     except:
         context["clsName"]=""
         context['dt']=""
         context['subj']=""
-    # print(clsName,dt,subj)
     
     return render(request, "home.html", context)
 
@@ -105,8 +101,6 @@ def createClass(request):
 def takeAttendance(request):
     context = {"takeAttendanceDetails":True}
     if request.method == "POST":
-        print(request.POST)
-        print(request.GET)
         curClass = request.user.classname_set.filter(name=request.GET.get('className'))[0]
         students = curClass.student_set.all()
         sub = request.user.subject_set.filter(subjectName=request.GET.get('subName'))[0]
@@ -119,13 +113,16 @@ def takeAttendance(request):
         
 
     if request.method == "GET" and request.GET and "className" in request.GET and "subName" in request.GET:
-        print(request.GET)
         context["takeAttendanceDetails"]=False
+        cls = request.user.classname_set.filter(name = request.GET.get('className'))[0]
+        if Attendance.objects.filter(user = request.user,datetime = request.GET.get('curdate')+" "+request.GET.get('curtime')+":00",classname=cls):
+            messages.info(request, f"Attendance for {cls.name} already exists at given datetime")
+            context["takeAttendanceDetails"]=True
         context["className"] = request.GET.get('className')
         context["subName"] = request.GET.get('subName')
         context["curdate"] = request.GET.get('curdate')
         context["curtime"] = request.GET.get('curtime')
-        context['allStudents'] = request.user.classname_set.filter(name = context['className'])[0].student_set.all()
+        context['allStudents'] = cls.student_set.all()
         totalAttendanceToDate = len(context['allStudents'][0].attendance_set.all())
         context['allStudents'] = [[z, int(z.netAttendance*100/totalAttendanceToDate) if totalAttendanceToDate>0 else 100] for z in context['allStudents']]
         return render(request, 'takeAttendance.html', context )
@@ -154,13 +151,11 @@ def get_closest_to_dt(qs, dt, cl):
 def search(request):
     context = {}
     context["takeRecordDetails"]=True
-    # print(get_closest_to_dt(request.user.attendance_set,"2022-10-25 12:00:00").datetime)
     if request.method=="GET" and request.GET and "className" in request.GET:
         try:
             context["takeRecordDetails"]=False
             curClass = request.user.classname_set.filter(name=request.GET.get('className'))[0]
             dateTime = get_closest_to_dt(request.user.attendance_set,f"{request.GET.get('curdate')} {request.GET.get('curtime')}",curClass)
-            # print(dateTime.datetime)
             context['atts'] = request.user.attendance_set.filter(datetime=dateTime.datetime, classname=curClass)
             context['cls'] = request.GET.get('className')
             context['dt'] = dateTime.datetime
@@ -182,12 +177,9 @@ def adv_search(request):
             context["takeRecordDetails"]=False
             rollno = request.GET.get('rollno')
             std = Student.objects.filter(user=request.user,rollno=rollno)[0]
-            print(request.GET.get('finaldate'))
             context['atts'] = std.attendance_set.filter(datetime__range=[request.GET.get('initdate'), datetime.strptime(request.GET.get('finaldate'),"%Y-%m-%d")+timedelta(days = 1)])
             context['att'] = context['atts'][0]
-            print(context['atts'])
-        except Exception as e:
-            print(e)
+        except:
             context["takeRecordDetails"]=True
             messages.info(request,"Please enter a roll number with attendance!")
     return render(request, 'adv_search.html', context)

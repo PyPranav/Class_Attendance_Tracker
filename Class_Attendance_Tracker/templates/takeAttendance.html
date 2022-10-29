@@ -54,7 +54,6 @@
     <div class="opt-box-container">
         <div class="opt-box">
             <h1 class="title">Mark Attendance</h1>
-            <!-- <br> -->
             <div class="dropdown_container">
             <span class="custom-dropdown">
                 <select name="className" required>
@@ -74,9 +73,6 @@
                 </select>
             </span>
         </div>
-            <!-- <br>
-            <br>
-            <br> -->
         <div class="datetime_container">
             <span class="datetime">
             <label for="curdate", style="color: #fff;">Date:</label>
@@ -84,10 +80,12 @@
             </span>
         <span class="datetime">
             <label for="curtime"  style="color: #fff;">Time:</label>
-            <input type="time" id="curtime" name="curtime" value="{{curtime}}" required> 
+            <input type="time" id="curtime" name="curtime" value="{{curtime}}" placeholder="hrs:mins" required> 
         </span>
     </div>
-        <!-- <br><br><br> -->
+        {% for message in messages %}
+                <p style="color: RED;">{{message}}</p>
+        {% endfor %}
         <input class="box__button" type="submit" value="Submit"></button>
         </div>
     </div>
