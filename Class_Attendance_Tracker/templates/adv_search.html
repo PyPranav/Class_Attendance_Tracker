@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Search{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'dropDown.css' %}?{% now " U" %}" />
+<link rel="stylesheet" href="{% static 'boxButton.css' %}?{% now " U" %}" />
+<link rel="stylesheet" href="{% static 'optBox.css' %}?{% now " U" %}" />
+<link rel="stylesheet" href="{% static 'table.css' %}?{% now " U" %}" />
+<link rel="stylesheet" href="{% static 'search.css' %}?{% now " U" %}" />
+{% endblock %}
+{% block content %}
+{% if takeRecordDetails %}
+<form method="get">
+    <div class="opt-box-container">
+        <div class="opt-box">
+            <h1 class="title">Search Old Attendance <a href="{% url 'search' %}">Search by Class</a></h1>
+            <!-- <a href="">Advanced Search</a> -->
+
+            <input type="text" name="rollno" class="text__input" placeholder="Enter Roll Number" maxlength="10"
+                required>
+            <div class="datetime_container">
+                <span class="datetime">
+                    <label for="initdate" , style="color: #fff;">Initial Date:</label>
+                    <input type="date" id="initdate" name="initdate" required>
+                </span>
+                <span class="datetime">
+                    <label for="finaldate" style="color: #fff;">Final Date:</label>
+                    <input type="date" id="finaldate" name="finaldate" required>
+                </span>
+            </div>
+            {% for message in messages %}
+            <p style="color: RED;">{{message}}</p>
+            {% endfor %}
+            <input class="box__button" type="submit" value="Submit"></button>
+        </div>
+    </div>
+</form>
+{% else %}
+<section>
+    <div class="opt-box-container">
+        <div class="opt-box">
+            <div style="text-align: center;">
+                <p>Name: {{att.student}} &emsp; Class: {{att.classname}}</p>
+                <p>Roll Number: {{att.student.rollno}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th class='tdl'>Date Time</th>
+                    <th>Present / Absent</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+
+                {% for att in atts %}
+                <tr>
+                    <td>{{att.subject}}</td>
+                    <td class='tdl'>{{att.datetime}}</td>
+                    <!-- <td>{{percentage}}%</td> -->
+                    {% if att.ispresent %}
+                    <td style="color: green;">
+                        Present
+                    </td>
+                    {% else %}
+                    <td style="color: red;">
+                        Absent
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

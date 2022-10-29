@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import *
-from datetime import datetime
+from datetime import datetime, timedelta
 import urllib
 
 #_________________________________________Login Logout and Registering User___________________________________________
@@ -176,4 +176,18 @@ def search(request):
 @login_required(login_url="login")
 def adv_search(request):
     context = {}
-    return render(request, 'search.html', context)
+    context["takeRecordDetails"]=True
+    if request.method=="GET" and request.GET and "rollno" in request.GET:
+        try:
+            context["takeRecordDetails"]=False
+            rollno = request.GET.get('rollno')
+            std = Student.objects.filter(user=request.user,rollno=rollno)[0]
+            print(request.GET.get('finaldate'))
+            context['atts'] = std.attendance_set.filter(datetime__range=[request.GET.get('initdate'), datetime.strptime(request.GET.get('finaldate'),"%Y-%m-%d")+timedelta(days = 1)])
+            context['att'] = context['atts'][0]
+            print(context['atts'])
+        except Exception as e:
+            print(e)
+            context["takeRecordDetails"]=True
+            messages.info(request,"Please enter a roll number with attendance!")
+    return render(request, 'adv_search.html', context)
