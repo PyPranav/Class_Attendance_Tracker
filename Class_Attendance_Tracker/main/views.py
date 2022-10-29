@@ -33,6 +33,10 @@ def registerPage(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Account was created for "+form.cleaned_data.get("username"))
+            u = User.objects.filter(username=request.POST.get('username'))[0]
+            for s in ['DSA', "Maths", "PCPF", "DLCOA", "Python", "HVSE"]:
+                u.subject_set.create(subjectName = s)
+                u.save()
             return redirect('login')
     context = {'form':form}
     print(form.errors)
@@ -48,7 +52,7 @@ def home(request):
     context={}
     latest=request.user.attendance_set.last()
     try:
-        context["clsName"]=latest.student.classname.name
+        context["clsName"]=latest.classname.name
         context['dt']=latest.datetime.strftime("%d-%m-%Y, %H:%M")
         context['subj']=latest.subject
         #http://127.0.0.1:8000/search/?className=SE_A&curdate=2022-10-25&curtime=15%3A18
