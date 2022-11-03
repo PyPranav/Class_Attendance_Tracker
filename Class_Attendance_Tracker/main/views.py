@@ -100,6 +100,7 @@ def createClass(request):
 @login_required(login_url="login")
 def takeAttendance(request):
     context = {"takeAttendanceDetails":True}
+    context['classnames'] = True
     if request.method == "POST":
         curClass = request.user.classname_set.filter(name=request.GET.get('className'))[0]
         students = curClass.student_set.all()
