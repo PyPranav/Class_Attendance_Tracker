@@ -4,14 +4,14 @@
 {% block title %}Home{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'home.css' %}?{% now "U" %}" />
-<link rel="stylesheet" href="{% static 'boxButton.css' %}?{% now "U" %}" />
+<link rel="stylesheet" href="{% static 'home.css' %}" />
+<link rel="stylesheet" href="{% static 'boxButton.css' %}" />
 {% endblock %}
 
 {% block content %}
 <p class="wlc__user">Welcome {{request.user}}</p>
 {% for msg in messages %}
-    <p class='msg'>{{msg}}</p>
+<p class='msg'>{{msg}}</p>
 {% endfor %}
 
 <div class='opt-container'>

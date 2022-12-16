@@ -4,7 +4,7 @@
 
 <head>
     <title>{% block title %}{%endblock%}</title>
-    <link rel="stylesheet" href="{% static 'nav.css' %}?{% now "U" %}" />
+    <link rel="stylesheet" href="{% static 'nav.css' %}" />
     {% block css %}
     <link rel="stylesheet" href="home.css">
     {%endblock%}
@@ -15,19 +15,26 @@
 <body>
     <div class="nav">
         <a href="{% url 'home' %}">
-            <img class="nav__logo" src="https://lh3.googleusercontent.com/pw/AL9nZEX4fbXkan3L-dG1yA2znNV0vHiuQfJZJqoTW1bkcU88nbKnVuiNjCTVkIlkXxURdHjEiSY-yjvUzKeWaAEZcClE5Y4ME4JpOykVYA_S3CDtght15JaersN-xv2xqiRdwhDUbph0zmLUh0pzpWaXWbtu=w342-h340-no" alt="nav_logo">
+            <img class="nav__logo"
+                src="https://lh3.googleusercontent.com/pw/AL9nZEX4fbXkan3L-dG1yA2znNV0vHiuQfJZJqoTW1bkcU88nbKnVuiNjCTVkIlkXxURdHjEiSY-yjvUzKeWaAEZcClE5Y4ME4JpOykVYA_S3CDtght15JaersN-xv2xqiRdwhDUbph0zmLUh0pzpWaXWbtu=w342-h340-no"
+                alt="nav_logo">
         </a>
         <div class="nav__text__container">
-        <a class="nav__text hide" href="{% url 'home' %}">Home</a>
-        <a class="nav__text hide" href="{% url 'createClass' %}">New Class</a>
-        <a class="nav__text hide" href="{% url 'search' %}">Records</a>
+            <a class="nav__text hide" href="{% url 'home' %}">Home</a>
+            <a class="nav__text hide" href="{% url 'createClass' %}">New Class</a>
+            <a class="nav__text hide" href="{% url 'search' %}">Records</a>
         </div>
         <a href="{% url 'logout' %}">
-        <svg class='logout' width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15.375 35.875H8.54167C7.63551 35.875 6.76647 35.515 6.12572 34.8743C5.48497 34.2335 5.125 33.3645 5.125 32.4583V8.54167C5.125 7.63551 5.48497 6.76647 6.12572 6.12572C6.76647 5.48497 7.63551 5.125 8.54167 5.125H15.375" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M27.3334 29.0417L35.875 20.5L27.3334 11.9583" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M35.875 20.5H15.375" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+            <svg class='logout' width="41" height="41" viewBox="0 0 41 41" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M15.375 35.875H8.54167C7.63551 35.875 6.76647 35.515 6.12572 34.8743C5.48497 34.2335 5.125 33.3645 5.125 32.4583V8.54167C5.125 7.63551 5.48497 6.76647 6.12572 6.12572C6.76647 5.48497 7.63551 5.125 8.54167 5.125H15.375"
+                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M27.3334 29.0417L35.875 20.5L27.3334 11.9583" stroke="white" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M35.875 20.5H15.375" stroke="white" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
         </a>
         <p class="nav__text nav__user">Hello {{request.user}}</p>
 
@@ -36,7 +43,7 @@
     {% block content %}
     {% endblock %}
 
-    
+
 </body>
 
 </html>

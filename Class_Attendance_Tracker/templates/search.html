@@ -2,41 +2,43 @@
 {% load static %}
 {% block title %}Search{% endblock %}
 {% block css %}
-<link rel="stylesheet" href="{% static 'dropDown.css' %}?{% now "U" %}" />
-<link rel="stylesheet" href="{% static 'boxButton.css' %}?{% now "U" %}" />
-<link rel="stylesheet" href="{% static 'optBox.css' %}?{% now "U" %}" />
-<link rel="stylesheet" href="{% static 'table.css' %}?{% now "U" %}" />
-<link rel="stylesheet" href="{% static 'search.css' %}?{% now "U" %}" />
+<link rel="stylesheet" href="{% static 'dropDown.css' %}" />
+<link rel="stylesheet" href="{% static 'boxButton.css' %}" />
+<link rel="stylesheet" href="{% static 'optBox.css' %}" />
+<link rel="stylesheet" href="{% static 'table.css' %}" />
+<link rel="stylesheet" href="{% static 'search.css' %}" />
 {% endblock %}
 {% block content %}
 {% if takeRecordDetails %}
 <form method="get">
     <div class="opt-box-container">
-            <div class="opt-box">
-                <h1 class="title"><p>Search Old Attendance</p> <a href="{% url 'adv_search' %}">Advanced Search</a></h1>
-                
-                <span class="custom-dropdown">
-                    <select name="className" required>
-                        <option disabled selected hidden>Select Class Name</option>
-                        {% for classname in classnames %}
-                            <option>{{classname.name}}</option>  
-                        {% endfor %}
-                    </select>
+        <div class="opt-box">
+            <h1 class="title">
+                <p>Search Old Attendance</p> <a href="{% url 'adv_search' %}">Advanced Search</a>
+            </h1>
+
+            <span class="custom-dropdown">
+                <select name="className" required>
+                    <option disabled selected hidden>Select Class Name</option>
+                    {% for classname in classnames %}
+                    <option>{{classname.name}}</option>
+                    {% endfor %}
+                </select>
+            </span>
+            <div class="datetime_container">
+                <span class="datetime">
+                    <label for="curdate" , style="color: #fff;">Date:</label>
+                    <input type="date" id="curdate" name="curdate" required>
                 </span>
-                <div class="datetime_container">
-                    <span class="datetime">
-                        <label for="curdate", style="color: #fff;">Date:</label>
-                        <input type="date" id="curdate" name="curdate" required>
-                    </span>
-                    <span class="datetime">
-                        <label for="curtime"  style="color: #fff;">Time:</label>
-                        <input type="time" id="curtime" name="curtime" required> 
-                    </span>
-                </div>
-                {% for message in messages %}
-                    <p style="color: RED;">{{message}}</p>
-                {% endfor %}
-                <input class="box__button" type="submit" value="Submit"></button>
+                <span class="datetime">
+                    <label for="curtime" style="color: #fff;">Time:</label>
+                    <input type="time" id="curtime" name="curtime" required>
+                </span>
+            </div>
+            {% for message in messages %}
+            <p style="color: RED;">{{message}}</p>
+            {% endfor %}
+            <input class="box__button" type="submit" value="Submit"></button>
         </div>
     </div>
 </form>
@@ -44,47 +46,47 @@
 <section>
     <div class="opt-box-container">
         <div class="opt-box">
-        <div style="text-align: center;">
-            <p>Class: {{cls}} &emsp; Subject: {{sub}}</p>
-            <p>Date Time: {{dt}}</p>
-        </div>
+            <div style="text-align: center;">
+                <p>Class: {{cls}} &emsp; Subject: {{sub}}</p>
+                <p>Date Time: {{dt}}</p>
+            </div>
         </div>
     </div>
-        <div class="tbl-header">
+    <div class="tbl-header">
         <table cellpadding="0" cellspacing="0" border="0">
             <thead>
-            <tr>
-                <th>Roll No</th>
-                <th class='tdl'>Name</th>
-                <th>Present / Absent</th>
-            </tr>
+                <tr>
+                    <th>Roll No</th>
+                    <th class='tdl'>Name</th>
+                    <th>Present / Absent</th>
+                </tr>
             </thead>
         </table>
-        </div>
-        <div class="tbl-content">
+    </div>
+    <div class="tbl-content">
         <table cellpadding="0" cellspacing="0" border="0">
             <tbody>
-                
-                    {% for att in atts %}
-                    <tr>
+
+                {% for att in atts %}
+                <tr>
                     <td>{{att.student.rollno}}</td>
                     <td class='tdl'>{{att.student}}</td>
                     <!-- <td>{{percentage}}%</td> -->
                     {% if att.ispresent %}
-                        <td style="color: green;">
-                            Present
-                        </td>
+                    <td style="color: green;">
+                        Present
+                    </td>
                     {% else %}
-                        <td style="color: red;">
-                            Absent
-                        </td>
+                    <td style="color: red;">
+                        Absent
+                    </td>
                     {% endif %}
                 </tr>
-                    {% endfor %}
-                
+                {% endfor %}
+
             </tbody>
         </table>
-        </div>
-  </section>
+    </div>
+</section>
 {% endif %}
 {% endblock %}

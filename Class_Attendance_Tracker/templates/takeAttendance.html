@@ -4,11 +4,11 @@
 {% block title %} New Attendance {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'takeAttendance.css' %}?{% now "U" %}" />
-<link rel="stylesheet" href="{% static 'dropDown.css' %}?{% now "U" %}" />
-<link rel="stylesheet" href="{% static 'boxButton.css' %}?{% now "U" %}" />
-<link rel="stylesheet" href="{% static 'table.css' %}?{% now "U" %}" />
-<link rel="stylesheet" href="{% static 'optBox.css' %}?{% now "U" %}" />
+<link rel="stylesheet" href="{% static 'takeAttendance.css' %}" />
+<link rel="stylesheet" href="{% static 'dropDown.css' %}" />
+<link rel="stylesheet" href="{% static 'boxButton.css' %}" />
+<link rel="stylesheet" href="{% static 'table.css' %}" />
+<link rel="stylesheet" href="{% static 'optBox.css' %}" />
 {% endblock %}
 
 {% block content %}
@@ -16,88 +16,89 @@
 <div class="opt-box-container">
     <div class="opt-box">
         <h1 class="title">No Classes Found</h1>
-        <a class="box__button" href="{% url 'createClass' %}">Create a new class</a>        
+        <a class="box__button" href="{% url 'createClass' %}">Create a new class</a>
     </div>
 </div>
 {% else %}
-    {% if not takeAttendanceDetails %}
-    <section>
-        <form method="post">
-            {% csrf_token %}
-            <div class="tbl-header">
+{% if not takeAttendanceDetails %}
+<section>
+    <form method="post">
+        {% csrf_token %}
+        <div class="tbl-header">
             <table cellpadding="0" cellspacing="0" border="0">
                 <thead>
-                <tr>
-                    <th>Roll No</th>
-                    <th class='tdl'>Name</th>
-                    <th>% Attendance</th>
-                    <th>Present</th>
-                </tr>
+                    <tr>
+                        <th>Roll No</th>
+                        <th class='tdl'>Name</th>
+                        <th>% Attendance</th>
+                        <th>Present</th>
+                    </tr>
                 </thead>
             </table>
-            </div>
-            <div class="tbl-content">
+        </div>
+        <div class="tbl-content">
             <table cellpadding="0" cellspacing="0" border="0">
                 <tbody>
-                    
-                        {% for student,percentage in allStudents %}
-                        <tr>
+
+                    {% for student,percentage in allStudents %}
+                    <tr>
                         <td>{{student.rollno}}</td>
                         <td class='tdl'>{{student.firstname}} {{student.lastname}}</td>
                         <td>{{percentage}}%</td>
-                        <td><input type="checkbox" class="largerCheckbox" name="{{student.rollno}}" value="1"></input></td>
+                        <td><input type="checkbox" class="largerCheckbox" name="{{student.rollno}}" value="1"></input>
+                        </td>
                     </tr>
-                        {% endfor %}
-                    
+                    {% endfor %}
+
                 </tbody>
             </table>
-            </div>
-            <div style="text-align: center; margin-top:3%">
-                <input class="box__button" type="submit" value="Submit"></button>
-            </div>
-        </form>
-    </section>
-    {% else %}
-    <form method="get">
-        <div class="opt-box-container">
-            <div class="opt-box">
-                <h1 class="title">Mark Attendance</h1>
-                <div class="dropdown_container">
+        </div>
+        <div style="text-align: center; margin-top:3%">
+            <input class="box__button" type="submit" value="Submit"></button>
+        </div>
+    </form>
+</section>
+{% else %}
+<form method="get">
+    <div class="opt-box-container">
+        <div class="opt-box">
+            <h1 class="title">Mark Attendance</h1>
+            <div class="dropdown_container">
                 <span class="custom-dropdown">
                     <select name="className" required>
                         <option disabled selected hidden>Select Class Name</option>
                         {% for classname in classnames %}
-                            <option>{{classname.name}}</option>  
+                        <option>{{classname.name}}</option>
                         {% endfor %}
                     </select>
                 </span>
-                
+
                 <span class="custom-dropdown">
                     <select name="subName" required>
                         <option disabled selected hidden>Select Subject Name</option>
                         {% for subject in subjects %}
-                            <option>{{subject.subjectName}}</option>  
+                        <option>{{subject.subjectName}}</option>
                         {% endfor %}
                     </select>
                 </span>
             </div>
             <div class="datetime_container">
                 <span class="datetime">
-                <label for="curdate", style="color: #fff;">Date:</label>
-                <input type="date" id="curdate" name="curdate" value="{{curdate}}" required>
+                    <label for="curdate" , style="color: #fff;">Date:</label>
+                    <input type="date" id="curdate" name="curdate" value="{{curdate}}" required>
                 </span>
-            <span class="datetime">
-                <label for="curtime"  style="color: #fff;">Time:</label>
-                <input type="time" id="curtime" name="curtime" value="{{curtime}}" placeholder="hrs:mins" required> 
-            </span>
-        </div>
+                <span class="datetime">
+                    <label for="curtime" style="color: #fff;">Time:</label>
+                    <input type="time" id="curtime" name="curtime" value="{{curtime}}" placeholder="hrs:mins" required>
+                </span>
+            </div>
             {% for message in messages %}
-                    <p style="color: RED;">{{message}}</p>
+            <p style="color: RED;">{{message}}</p>
             {% endfor %}
             <input class="box__button" type="submit" value="Submit"></button>
-            </div>
         </div>
-    </form>
-    {% endif %}
+    </div>
+</form>
+{% endif %}
 {% endif %}
 {% endblock %}
