@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-y(f0zwq@a5m!v8jqw9)%(4xln0soti&*r0s(2*044uj_#517j2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["http://127.0.0.1:8000/", "https://classattendancetracker.pythonanywhere.com/"]
+ALLOWED_HOSTS = ["127.0.0.1:8000", "classattendancetracker.pythonanywhere.com"]
 
 
 # Application definition
