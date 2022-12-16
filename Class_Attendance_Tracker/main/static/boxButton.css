@@ -1,0 +1,23 @@
+.box__button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 40px;
+    box-shadow: 0 15px 35px rgba(0,0,0,.6);
+    color: #fff;
+    background-color: #1ABC9C;
+    border:none;
+    border-radius:15px;
+    font-size: 16px;
+    overflow: hidden;
+    transition: all .5s;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+  
+.box__button:hover{
+    box-shadow: none;
+}
+  
+.box__button:active{
+    background-color: aquamarine;
+}

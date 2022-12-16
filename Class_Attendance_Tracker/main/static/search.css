@@ -1,0 +1,56 @@
+body{
+    color: #fff;
+}
+.text__input{
+    background-color: #1abc9c;
+    color: #fff;
+    font-size: inherit;
+    padding: .5em;
+    border:none;
+    appearance: none;
+    border-radius: 3px;
+} 
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #fff;
+    opacity: 1; /* Firefox */
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+color: #fff;
+}
+.box__button {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.title{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.title p{
+    margin: 0px;
+}
+.title a{
+    font-size: small;
+    align-self: flex-end;
+    margin-right: 10%;
+    text-decoration: none;
+    color: #0066cc;
+}
+.tbl-content{
+    height:40vh ;
+}
+.datetime{
+    margin-right:1vw ;
+}
+.datetime_container{
+    display: flex;
+    flex-direction: row;
+}
+@media (max-width: 700px) {
+    .datetime_container{
+        flex-direction: column;
+    }
+    .datetime{
+        margin-top:1vh ;
+    }
+}

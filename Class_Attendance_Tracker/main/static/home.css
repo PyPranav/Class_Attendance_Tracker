@@ -1,0 +1,71 @@
+body {
+    background-color: #141e30;
+    font-family: 'Open Sans';
+}
+.msg{
+    color: yellow;
+    font-size: 15px;
+    margin-left: 7%;
+}
+/* wlcm username */
+.wlc__user{
+    color: #ffffff;
+    margin: 2%;
+    font-size: 20px;
+}
+
+
+/* CSS FOR THE 4 BOXES */
+.opt-box {
+    width: 40%;
+    background-color: #243B55;
+    border-radius: 30px;
+    box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.25);
+    transition: all 0.5s;
+}
+
+.opt-box:after {
+    content: "";
+    display: block;
+    padding-bottom: 8%;
+}
+
+.opt-box:hover {
+    box-shadow: none;
+}
+
+.opt-box p{
+    color: #ffffff;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 7%;
+    font-size: 17px;
+}
+
+.opt-container {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 2%;
+}
+
+/* Buttons */
+.box__button {
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+@media (max-width: 700px) {
+    .opt-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding-bottom: 20px;
+        align-items: center;
+
+    }
+    .opt-box {
+        width: 80%;
+        
+    }
+}
+  

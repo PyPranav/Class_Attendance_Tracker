@@ -1,0 +1,24 @@
+.opt-box-container{
+    margin: 4%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.opt-box {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    /* text-align: center; */
+    gap: 30px;
+    padding: 2%;
+    width: 90%;
+    background-color: #243B55;
+    border-radius: 30px;
+    box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.25);
+    transition: all 0.5s;
+}
+@media (max-width: 700px) {
+    .opt-box-container{
+        margin-top: 100px !important;
+    }
+}
